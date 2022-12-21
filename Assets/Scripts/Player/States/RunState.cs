@@ -26,11 +26,13 @@ public class RunState : BasePlayerState
         if (InputSystem.GetKeyDown(KeyCode.Space) && player.movement.GroundAngle <= 40)
         {
             stateSwitcher.SwitchState<JumpState>();
+            return;
         }
 
         if (player.movement.GroundAngle > 40)
         {
             stateSwitcher.SwitchState<SlopeSlideState>();
+            return;
         }
     }
 

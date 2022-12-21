@@ -17,16 +17,19 @@ public class IdleState : BasePlayerState
         if (player.movement.GroundAngle > 40)
         {
             stateSwitcher.SwitchState<SlopeSlideState>();
+            return;
         }
 
         if (InputSystem.GetHorizontalRaw() != 0)
         {
             stateSwitcher.SwitchState<RunState>();
+            return;
         }
 
         if (InputSystem.GetKeyDown(KeyCode.Space) && player.movement.GroundAngle <= 40)
         {
             stateSwitcher.SwitchState<JumpState>();
+            return;
         }
     }
 

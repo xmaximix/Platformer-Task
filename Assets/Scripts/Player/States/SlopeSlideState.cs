@@ -14,6 +14,7 @@ public class SlopeSlideState : BasePlayerState
         if (player.movement.GroundAngle < 40)
         {
             stateSwitcher.SwitchState<IdleState>();
+            return;
         }
     }
 

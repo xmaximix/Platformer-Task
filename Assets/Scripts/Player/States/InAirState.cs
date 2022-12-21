@@ -28,6 +28,7 @@ public class InAirState : BasePlayerState
         if (groundCheckDelay <= 0 && player.movement.CheckGround())
         {
             stateSwitcher.SwitchState<IdleState>();
+            return;
         }
     }
 }

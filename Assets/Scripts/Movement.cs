@@ -23,6 +23,7 @@ public class Movement
 
     public void Move(float horizontalInput)
     {
+        CheckGround(false, .8f);
         if (GroundAngle > 40)
         {
             return;
@@ -40,17 +41,19 @@ public class Movement
         rigidbody.velocity = clampVelocity;
     }
 
-    public bool CheckGround()
+    public bool CheckGround(bool snap = true, float rayDistance = 1f)
     {
         var grounded = false;
-        var rayDistance = 1f;
 
         RaycastHit2D hit = Physics2D.Raycast(rigidbody.transform.position, Vector2.down, rayDistance, groundLayer);
         if (hit)
         {
             groundAngle = Vector2.Angle(hit.normal, Vector2.up);
-            rigidbody.AddForce(Vector2.down, ForceMode2D.Impulse);
-            grounded = true;
+            if (snap)
+            {
+                rigidbody.AddForce(Vector2.down, ForceMode2D.Impulse);
+                grounded = true;
+            }
         }
 
         return grounded;
